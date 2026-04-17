@@ -1,4 +1,5 @@
 import type { DatabaseClient } from "@/modules/db/db.client";
+import type { ResponseCacheService } from "@/modules/cache/response-cache.service";
 import type { KnowledgeRepository } from "@/modules/knowledge/knowledge.repository";
 import type { LlmClient } from "@/modules/llm/llm.client";
 
@@ -7,10 +8,12 @@ export class HealthService {
     private readonly databaseClient: DatabaseClient,
     private readonly knowledgeRepository: KnowledgeRepository,
     private readonly llmClient: LlmClient,
+    private readonly responseCacheService: ResponseCacheService,
   ) {}
 
   async getStatus() {
     const database = await this.databaseClient.ping();
+    const cache = await this.responseCacheService.ping();
 
     if (!database.ok) {
       return {
@@ -18,6 +21,7 @@ export class HealthService {
         service: "portfolio-ai-backend",
         timestamp: new Date().toISOString(),
         database,
+        cache,
         knowledge: {
           documentCount: 0,
           chunkCount: 0,
@@ -36,6 +40,7 @@ export class HealthService {
       service: "portfolio-ai-backend",
       timestamp: new Date().toISOString(),
       database,
+      cache,
       knowledge,
       llm: {
         enabled: this.llmClient.isEnabled(),

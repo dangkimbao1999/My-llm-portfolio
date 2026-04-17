@@ -32,6 +32,7 @@ type DbKnowledgeChunkRow = {
   tags: string[];
   content: string;
   searchableText: string;
+  checksum: string;
 };
 
 export class KnowledgeRepository {
@@ -91,7 +92,8 @@ export class KnowledgeRepository {
           d.source_path as "sourcePath",
           d.tags,
           c.content,
-          c.searchable_text as "searchableText"
+          c.searchable_text as "searchableText",
+          c.checksum
         from knowledge_chunks c
         inner join knowledge_documents d on d.id = c.document_id
         order by d.source_path asc, c.chunk_index asc

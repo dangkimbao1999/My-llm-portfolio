@@ -17,5 +17,10 @@ export type ChatResponse = {
     model: string | null;
     topScore: number;
     contextCount: number;
+    cache: {
+      hit: boolean;
+      layer: "none" | "redis-exact" | "postgres-similarity";
+      similarityScore?: number;
+    };
   };
 };
