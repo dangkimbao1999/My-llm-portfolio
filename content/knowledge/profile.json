@@ -1,69 +1,84 @@
 {
   "person": {
-    "name": "Alex Tran",
-    "headline": "Backend Engineer and Product-Minded Full-Stack Builder",
-    "summary": "Alex Tran is a Ho Chi Minh City based software engineer with 5+ years of experience building internal platforms, SaaS products, and customer-facing web applications. His strongest area is backend development with Node.js and TypeScript, with hands-on experience in API design, PostgreSQL, system integration, and shipping pragmatic product features end to end.",
+    "name": "Bao Dang Kim",
+    "headline": "Backend Engineer moving toward Product Owner / Product Manager roles",
+    "summary": "Bao Dang Kim is a backend engineer based in Ho Chi Minh City with more than 5 years of hands-on experience in R&D and technical delivery. His recent work combines backend engineering, product planning, roadmap execution, and cross-functional alignment, with strong interest in fintech and AI products.",
     "location": "Ho Chi Minh City, Vietnam",
     "languages": ["Vietnamese", "English"],
     "years_of_experience": 5,
-    "current_status": "Open to backend engineer and full-stack product engineer opportunities.",
-    "career_objective": "Grow into a senior engineer who can own product-facing backend systems, system design decisions, and AI-enabled application workflows."
+    "current_status": "Interested in product-focused leadership roles and backend ownership roles where strategy, engineering, and delivery need to work together.",
+    "career_objective": "Pivot into Product Owner or Product Manager roles while continuing to leverage strong backend engineering experience, especially in fintech and AI-driven products."
+  },
+  "education": {
+    "school": "Vietnamese-German University / Frankfurt University of Applied Sciences",
+    "degree": "Bachelor of Science in Computer Science (Dual degree)",
+    "graduation_note": "Graduated with Very Good classification"
   },
   "skills": {
-    "backend": [
+    "technical": [
       "Node.js",
-      "TypeScript",
-      "REST API design",
+      "Golang",
       "PostgreSQL",
-      "Authentication and authorization",
-      "Background jobs",
-      "Webhook integrations"
-    ],
-    "frontend": [
-      "Next.js",
-      "React",
-      "SSR",
-      "Form handling",
-      "Design-to-code implementation"
-    ],
-    "tools_and_platforms": [
+      "NoSQL databases",
+      "Redis",
+      "Milvus",
+      "Microservice architecture",
+      "Distributed system architecture",
+      "GCP",
+      "AWS",
       "Docker",
-      "GitHub Actions",
-      "Vercel",
-      "Railway",
-      "OpenAI API",
-      "Postman"
+      "Next.js",
+      "React"
+    ],
+    "management": [
+      "Scrum and Agile execution",
+      "Feature and product analysis",
+      "Roadmap planning",
+      "Budget awareness",
+      "Leadership for teams up to 10 people",
+      "Cross-functional collaboration"
     ]
   },
   "working_style": {
-    "collaboration_style": "Alex prefers clear ownership, short feedback loops, and direct communication. He is comfortable working with product managers, designers, and other engineers, and he tends to document important decisions when a project starts growing in complexity.",
-    "communication_style": "Concise, practical, and transparent about tradeoffs or missing information.",
-    "decision_making_style": "Start with the simplest solution that is maintainable, then add complexity only when there is a real product or operational need.",
+    "collaboration_style": "Bao works closely with leadership, product, and engineering teams to translate high-level vision into scoped deliverables, roadmap decisions, and shipped features.",
+    "communication_style": "Direct, pragmatic, and focused on clarity, tradeoffs, and execution.",
+    "decision_making_style": "He prefers maintainable technical foundations and cost-efficient delivery, especially when product direction and engineering constraints need to be balanced.",
+    "personality_type": "ENFJ-A",
+    "personality_summary": "Bao tends to be people-oriented, high-agency, and naturally comfortable aligning teams around a shared direction. He usually combines friendly communication with a strong bias toward action and delivery.",
     "engineering_values": [
-      "Accuracy over hype",
-      "Clarity in communication",
-      "Maintainable architecture over clever shortcuts",
-      "Fast iteration with explicit tradeoffs",
-      "No fabricated claims in AI features"
+      "Scalable architecture",
+      "End-to-end product ownership",
+      "Cross-functional alignment",
+      "Practical AI adoption",
+      "Compliance-aware system design"
     ]
   },
   "career_direction": {
     "target_roles": [
-      "Backend Engineer",
-      "Full-Stack Product Engineer",
-      "Applied AI Engineer"
+      "Product Owner",
+      "Product Manager",
+      "Backend Engineering Lead",
+      "Head of Engineering in product-focused teams"
     ],
     "industries_of_interest": [
-      "Developer tools",
-      "SaaS",
-      "AI applications",
-      "Internal platforms"
+      "Fintech",
+      "AI products",
+      "Infrastructure-heavy platforms",
+      "Products that combine technical depth with business strategy"
     ],
     "learning_focus": [
-      "System design",
-      "RAG architecture",
-      "Production observability",
-      "Scalable PostgreSQL-backed services"
+      "Product leadership",
+      "AI-native product strategy",
+      "Financial systems and token economics",
+      "Scalable backend delivery"
+    ],
+    "vision_statement": "Bao wants to become a product leader who can connect strategy, engineering depth, and execution discipline to build products with real business impact.",
+    "preferred_environment": [
+      "High-ownership teams",
+      "Direct communication",
+      "Fast iteration",
+      "Strong product thinking",
+      "A culture that values both execution and clarity"
     ]
   }
 }

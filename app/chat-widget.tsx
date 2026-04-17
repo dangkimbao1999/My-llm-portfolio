@@ -72,12 +72,12 @@ export function ChatWidget({ promptSuggestions }: ChatWidgetProps) {
           <p>Live Interaction</p>
         </div>
         <h2>
-          Meet My <br />
-          Digital Twin
+          Chat with <br />
+          Bao&apos;s AI
         </h2>
         <p>
-          A custom-trained AI interface designed to answer your questions about work process,
-          availability, and design philosophy in real time.
+          Ask about Bao&apos;s experience, projects, strengths, and product mindset. Answers are
+          generated only from the verified knowledge base behind this portfolio.
         </p>
         <div className={styles.chatPrompts}>
           {suggestions.map((suggestion) => (
@@ -118,10 +118,10 @@ export function ChatWidget({ promptSuggestions }: ChatWidgetProps) {
       <div className={styles.chatWindow}>
         <div className={styles.chatWindowHeader}>
           <div className={styles.chatIdentity}>
-            <div className={styles.chatAvatar}>DC</div>
+            <div className={styles.chatAvatar}>BK</div>
             <div>
-              <p>Digital Curator AI</p>
-              <span>Online / Interactive</span>
+              <p>Bao AI Representative</p>
+              <span>Online / Grounded</span>
             </div>
           </div>
           <svg
