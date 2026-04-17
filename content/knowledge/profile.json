@@ -1,0 +1,69 @@
+{
+  "person": {
+    "name": "Alex Tran",
+    "headline": "Backend Engineer and Product-Minded Full-Stack Builder",
+    "summary": "Alex Tran is a Ho Chi Minh City based software engineer with 5+ years of experience building internal platforms, SaaS products, and customer-facing web applications. His strongest area is backend development with Node.js and TypeScript, with hands-on experience in API design, PostgreSQL, system integration, and shipping pragmatic product features end to end.",
+    "location": "Ho Chi Minh City, Vietnam",
+    "languages": ["Vietnamese", "English"],
+    "years_of_experience": 5,
+    "current_status": "Open to backend engineer and full-stack product engineer opportunities.",
+    "career_objective": "Grow into a senior engineer who can own product-facing backend systems, system design decisions, and AI-enabled application workflows."
+  },
+  "skills": {
+    "backend": [
+      "Node.js",
+      "TypeScript",
+      "REST API design",
+      "PostgreSQL",
+      "Authentication and authorization",
+      "Background jobs",
+      "Webhook integrations"
+    ],
+    "frontend": [
+      "Next.js",
+      "React",
+      "SSR",
+      "Form handling",
+      "Design-to-code implementation"
+    ],
+    "tools_and_platforms": [
+      "Docker",
+      "GitHub Actions",
+      "Vercel",
+      "Railway",
+      "OpenAI API",
+      "Postman"
+    ]
+  },
+  "working_style": {
+    "collaboration_style": "Alex prefers clear ownership, short feedback loops, and direct communication. He is comfortable working with product managers, designers, and other engineers, and he tends to document important decisions when a project starts growing in complexity.",
+    "communication_style": "Concise, practical, and transparent about tradeoffs or missing information.",
+    "decision_making_style": "Start with the simplest solution that is maintainable, then add complexity only when there is a real product or operational need.",
+    "engineering_values": [
+      "Accuracy over hype",
+      "Clarity in communication",
+      "Maintainable architecture over clever shortcuts",
+      "Fast iteration with explicit tradeoffs",
+      "No fabricated claims in AI features"
+    ]
+  },
+  "career_direction": {
+    "target_roles": [
+      "Backend Engineer",
+      "Full-Stack Product Engineer",
+      "Applied AI Engineer"
+    ],
+    "industries_of_interest": [
+      "Developer tools",
+      "SaaS",
+      "AI applications",
+      "Internal platforms"
+    ],
+    "learning_focus": [
+      "System design",
+      "RAG architecture",
+      "Production observability",
+      "Scalable PostgreSQL-backed services"
+    ]
+  }
+}

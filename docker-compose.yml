@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    container_name: portfolio-ai-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      APP_NAME: Portfolio AI Representative
+      APP_BASE_URL: http://localhost:3000
+      ENABLE_DB: "true"
+      DATABASE_URL: postgresql://portfolio:portfolio@postgres:5432/portfolio_ai
+      ENABLE_LLM: "${ENABLE_LLM:-true}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENAI_API_BASE: https://api.openai.com/v1
+      LLM_MODEL: gpt-4.1-mini
+      OPENAI_TEMPERATURE: "0.2"
+      ENABLE_VERBOSE_LOGS: "true"
+      CHAT_TOP_K: "5"
+      RETRIEVAL_MIN_SCORE: "4"
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: portfolio-ai-postgres
+    environment:
+      POSTGRES_DB: portfolio_ai
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfolio
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio -d portfolio_ai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

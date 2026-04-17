@@ -1,0 +1,61 @@
+:root {
+  color-scheme: dark;
+  --background: #151120;
+  --foreground: #e7dff5;
+  --surface: #211d2d;
+  --surface-high: #373243;
+  --surface-low: #1d1929;
+  --surface-lowest: #100c1b;
+  --outline: #4a4452;
+  --outline-soft: rgba(149, 142, 157, 0.18);
+  --primary: #d4bbff;
+  --primary-strong: #b088f9;
+  --secondary: #fbe410;
+  --secondary-ink: #201c00;
+  --tertiary: #65dd92;
+  --muted: #ccc3d4;
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(176, 136, 249, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(101, 221, 146, 0.08), transparent 22%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+main {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--secondary);
+  color: var(--secondary-ink);
+}
