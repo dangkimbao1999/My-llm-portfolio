@@ -39,4 +39,5 @@ export type KnowledgeChunkRecord = {
   tags: string[];
   content: string;
   searchableText: string;
+  checksum: string;
 };

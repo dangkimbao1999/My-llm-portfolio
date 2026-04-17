@@ -9,11 +9,16 @@ const envSchema = z.object({
   LLM_MODEL: z.string().default("gpt-4.1-mini"),
   OPENAI_TEMPERATURE: z.coerce.number().min(0).max(2).default(0.2),
   DATABASE_URL: z.string().optional(),
+  REDIS_URL: z.string().optional(),
   ENABLE_DB: z.coerce.boolean().default(true),
   ENABLE_LLM: z.coerce.boolean().default(false),
+  ENABLE_REDIS_CACHE: z.coerce.boolean().default(true),
   ENABLE_VERBOSE_LOGS: z.coerce.boolean().default(true),
   CHAT_TOP_K: z.coerce.number().int().min(1).max(10).default(5),
   RETRIEVAL_MIN_SCORE: z.coerce.number().int().min(1).default(4),
+  EXACT_CACHE_TTL_SECONDS: z.coerce.number().int().min(60).default(86400),
+  SIMILAR_CACHE_THRESHOLD: z.coerce.number().min(0).max(1).default(0.82),
+  SIMILAR_CACHE_MAX_AGE_DAYS: z.coerce.number().int().min(1).default(30),
 });
 
 export const env = envSchema.parse({
@@ -25,9 +30,14 @@ export const env = envSchema.parse({
   LLM_MODEL: process.env.LLM_MODEL,
   OPENAI_TEMPERATURE: process.env.OPENAI_TEMPERATURE,
   DATABASE_URL: process.env.DATABASE_URL,
+  REDIS_URL: process.env.REDIS_URL,
   ENABLE_DB: process.env.ENABLE_DB,
   ENABLE_LLM: process.env.ENABLE_LLM,
+  ENABLE_REDIS_CACHE: process.env.ENABLE_REDIS_CACHE,
   ENABLE_VERBOSE_LOGS: process.env.ENABLE_VERBOSE_LOGS,
   CHAT_TOP_K: process.env.CHAT_TOP_K,
   RETRIEVAL_MIN_SCORE: process.env.RETRIEVAL_MIN_SCORE,
+  EXACT_CACHE_TTL_SECONDS: process.env.EXACT_CACHE_TTL_SECONDS,
+  SIMILAR_CACHE_THRESHOLD: process.env.SIMILAR_CACHE_THRESHOLD,
+  SIMILAR_CACHE_MAX_AGE_DAYS: process.env.SIMILAR_CACHE_MAX_AGE_DAYS,
 });

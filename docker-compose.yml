@@ -5,24 +5,33 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     container_name: portfolio-ai-app
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_started
     environment:
       NODE_ENV: production
       APP_NAME: Portfolio AI Representative
       APP_BASE_URL: http://localhost:3000
       ENABLE_DB: "true"
       DATABASE_URL: postgresql://portfolio:portfolio@postgres:5432/portfolio_ai
+      REDIS_URL: "${REDIS_URL_DOCKER:-redis://redis:6379}"
       ENABLE_LLM: "${ENABLE_LLM:-true}"
+      ENABLE_REDIS_CACHE: "${ENABLE_REDIS_CACHE:-true}"
       OPENAI_API_KEY: "${OPENAI_API_KEY}"
-      OPENAI_API_BASE: https://api.openai.com/v1
-      LLM_MODEL: gpt-4.1-mini
-      OPENAI_TEMPERATURE: "0.2"
-      ENABLE_VERBOSE_LOGS: "true"
-      CHAT_TOP_K: "5"
-      RETRIEVAL_MIN_SCORE: "4"
+      OPENAI_API_BASE: "${OPENAI_API_BASE_DOCKER:-http://host.docker.internal:20128/v1}"
+      LLM_MODEL: "${LLM_MODEL}"
+      OPENAI_TEMPERATURE: "${OPENAI_TEMPERATURE:-0.2}"
+      ENABLE_VERBOSE_LOGS: "${ENABLE_VERBOSE_LOGS:-true}"
+      CHAT_TOP_K: "${CHAT_TOP_K:-5}"
+      RETRIEVAL_MIN_SCORE: "${RETRIEVAL_MIN_SCORE:-4}"
+      EXACT_CACHE_TTL_SECONDS: "${EXACT_CACHE_TTL_SECONDS:-86400}"
+      SIMILAR_CACHE_THRESHOLD: "${SIMILAR_CACHE_THRESHOLD:-0.82}"
+      SIMILAR_CACHE_MAX_AGE_DAYS: "${SIMILAR_CACHE_MAX_AGE_DAYS:-30}"
     ports:
       - "3000:3000"
     restart: unless-stopped
@@ -44,6 +53,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: portfolio-ai-redis
+    ports:
+      - "6379:6379"
     restart: unless-stopped
 
 volumes:

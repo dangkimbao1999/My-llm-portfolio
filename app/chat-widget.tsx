@@ -1,14 +1,19 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useOptimistic, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 import { submitChatMessage } from "./chat-actions";
-import { initialChatState } from "./chat-state";
+import { initialChatState, type ChatMessage } from "./chat-state";
 import styles from "./page.module.css";
 
 type ChatWidgetProps = {
   promptSuggestions: string[];
+};
+
+type UiMessage = ChatMessage & {
+  pending?: boolean;
+  localId?: string;
 };
 
 function SubmitButton() {
@@ -47,13 +52,17 @@ export function ChatWidget({ promptSuggestions }: ChatWidgetProps) {
   const messages = state?.messages ?? initialChatState.messages;
   const error = state?.error ?? null;
   const suggestions = promptSuggestions ?? [];
+  const [optimisticMessages, addOptimisticMessages] = useOptimistic<UiMessage[], UiMessage[]>(
+    messages,
+    (currentState, optimisticValue) => [...currentState, ...optimisticValue],
+  );
 
   useEffect(() => {
     messagesRef.current?.scrollTo({
       top: messagesRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [messages.length, error]);
+  }, [optimisticMessages.length, error]);
 
   return (
     <>
@@ -129,9 +138,9 @@ export function ChatWidget({ promptSuggestions }: ChatWidgetProps) {
         </div>
 
         <div ref={messagesRef} className={styles.chatMessages}>
-          {messages.map((message, index) => (
+          {optimisticMessages.map((message, index) => (
             <div
-              key={`${message.role}-${index}-${message.content.slice(0, 24)}`}
+              key={message.localId ?? `${message.role}-${index}-${message.content.slice(0, 24)}`}
               className={
                 message.role === "assistant"
                   ? styles.chatMessageRow
@@ -159,12 +168,20 @@ export function ChatWidget({ promptSuggestions }: ChatWidgetProps) {
               <div
                 className={
                   message.role === "assistant"
-                    ? styles.chatBubble
+                    ? `${styles.chatBubble} ${message.pending ? styles.chatBubblePending : ""}`
                     : `${styles.chatBubble} ${styles.chatBubbleUser}`
                 }
               >
-                <p className={styles.chatText}>{message.content}</p>
-                {message.role === "assistant" && message.sources?.length ? (
+                {message.pending ? (
+                  <div className={styles.chatTyping}>
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                ) : (
+                  <p className={styles.chatText}>{message.content}</p>
+                )}
+                {message.role === "assistant" && !message.pending && message.sources?.length ? (
                   <div className={styles.chatSources}>
                     {message.sources.slice(0, 3).map((source) => (
                       <span key={source.chunkId} className={styles.chatSourceChip}>
@@ -182,8 +199,27 @@ export function ChatWidget({ promptSuggestions }: ChatWidgetProps) {
 
         <form
           ref={formRef}
-          action={async (formData) => {
-            await formAction(formData);
+          action={formAction}
+          onSubmit={() => {
+            const submittedQuestion = question.trim();
+
+            if (!submittedQuestion) {
+              return;
+            }
+
+            addOptimisticMessages([
+              {
+                role: "user",
+                content: submittedQuestion,
+                localId: `user-${Date.now()}`,
+              },
+              {
+                role: "assistant",
+                content: "",
+                pending: true,
+                localId: `assistant-${Date.now()}`,
+              },
+            ]);
             setQuestion("");
           }}
           className={styles.chatComposer}
