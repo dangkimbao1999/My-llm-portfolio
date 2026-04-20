@@ -701,6 +701,147 @@
   line-height: 1.85;
 }
 
+.personalitySection {
+  position: relative;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  background:
+    radial-gradient(circle at top left, rgba(251, 228, 16, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(101, 221, 146, 0.18), transparent 26%),
+    linear-gradient(135deg, rgba(44, 40, 56, 0.92), rgba(21, 17, 32, 0.98));
+  border-top: 1px solid rgba(74, 68, 82, 0.18);
+  border-bottom: 1px solid rgba(74, 68, 82, 0.18);
+}
+
+.personalityHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.personalityLabel {
+  margin: 0 0 1rem;
+  font-family: var(--font-headline);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.personalityHeader h2,
+.visionIntro h2 {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.personalityHeader h2 span {
+  color: var(--secondary);
+  font-style: italic;
+}
+
+.personalityTags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.personalityTag {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(251, 228, 16, 0.12);
+  border: 1px solid rgba(251, 228, 16, 0.35);
+  color: var(--secondary);
+  font-family: var(--font-headline);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.personalityCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.personalityCard {
+  padding: 1.6rem;
+  background: rgba(21, 17, 32, 0.7);
+  border: 1px solid rgba(212, 187, 255, 0.14);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
+}
+
+.personalityCard:nth-child(1) {
+  transform: rotate(-1deg);
+}
+
+.personalityCard:nth-child(2) {
+  transform: translateY(1rem);
+}
+
+.personalityCard:nth-child(3) {
+  transform: rotate(1deg);
+}
+
+.personalityCard h3 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-headline);
+  font-size: 1.45rem;
+}
+
+.personalityCard p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.visionSection {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.visionGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.visionIntro {
+  grid-column: span 5;
+}
+
+.visionLead {
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.visionPoints {
+  grid-column: span 7;
+  display: grid;
+  gap: 1rem;
+}
+
+.visionPoint {
+  padding: 1.25rem 1.35rem;
+  border-left: 3px solid rgba(212, 187, 255, 0.6);
+  background: rgba(29, 25, 41, 0.6);
+}
+
+.visionPoint p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
 .exhibitsSection {
   width: 100%;
   max-width: none;
@@ -861,14 +1002,29 @@
   border-top: 1px solid rgba(74, 68, 82, 0.3);
 }
 
+.timelineAccordion {
+  border-bottom: 1px solid rgba(74, 68, 82, 0.3);
+  background: transparent;
+  transition: background 220ms ease;
+}
+
+.timelineAccordion[open] {
+  background: rgba(29, 25, 41, 0.85);
+}
+
 .timelineItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
   padding: 2rem 1.5rem;
-  border-bottom: 1px solid rgba(74, 68, 82, 0.3);
+  list-style: none;
+  cursor: pointer;
   transition: background 220ms ease;
+}
+
+.timelineItem::-webkit-details-marker {
+  display: none;
 }
 
 .timelineItem:hover {
@@ -893,6 +1049,10 @@
   color: var(--primary);
 }
 
+.timelineAccordion[open] .timelineStep {
+  color: var(--primary);
+}
+
 .timelineLeft h3,
 .timelineRight strong {
   margin: 0;
@@ -907,6 +1067,13 @@
 .timelineRight span {
   margin: 0.35rem 0 0;
   color: var(--muted);
+}
+
+.timelineMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
 }
 
 .timelineRight {
@@ -924,6 +1091,34 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.timelineChevron {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+  border-right: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 220ms ease, opacity 220ms ease;
+  opacity: 0.9;
+}
+
+.timelineAccordion[open] .timelineChevron {
+  transform: rotate(-135deg) translateY(-1px);
+}
+
+.timelineDetails {
+  padding: 0 1.5rem 2rem 6.9rem;
+}
+
+.timelineDetailsList {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.85rem;
+  color: var(--muted);
+  line-height: 1.8;
 }
 
 .footer {
@@ -974,6 +1169,8 @@
   .chatWindow,
   .storyVisual,
   .storyCopy,
+  .visionIntro,
+  .visionPoints,
   .exhibitCard,
   .exhibitWide,
   .exhibitSquare,
@@ -1022,6 +1219,25 @@
     transform: translate(1rem, 1rem);
   }
 
+  .personalityHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .personalityTags {
+    justify-content: flex-start;
+  }
+
+  .personalityCards {
+    grid-template-columns: 1fr;
+  }
+
+  .personalityCard:nth-child(1),
+  .personalityCard:nth-child(2),
+  .personalityCard:nth-child(3) {
+    transform: none;
+  }
+
   .exhibitSquare {
     margin-top: 0;
   }
@@ -1029,6 +1245,15 @@
   .timelineRight {
     text-align: left;
   }
+
+  .timelineMeta {
+    margin-left: 0;
+  }
+
+  .timelineDetails {
+    padding-left: 1.5rem;
+  }
+
 }
 
 @media (max-width: 720px) {
@@ -1043,6 +1268,8 @@
   .heroSection,
   .chatSection,
   .storySection,
+  .personalitySection,
+  .visionSection,
   .timelineSection {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -1083,6 +1310,10 @@
 
   .timelineLeft h3 {
     font-size: 1.45rem;
+  }
+
+  .timelineDetails {
+    padding: 0 1rem 1.5rem;
   }
 
   .footerLinks {

@@ -2,60 +2,97 @@ import { ChatWidget } from "./chat-widget";
 import styles from "./page.module.css";
 
 const navItems = [
-  { label: "Work", href: "#work", active: true },
-  { label: "Story", href: "#story" },
-  { label: "Values", href: "#values" },
+  { label: "Background", href: "#story", active: true },
+  { label: "Strengths", href: "#values" },
+  { label: "Personality", href: "#personality" },
+  { label: "Vision", href: "#vision" },
   { label: "Timeline", href: "#timeline" },
 ];
 
 const summaryCards = [
   {
     icon: "architecture",
-    title: "Systems Architect",
+    title: "Backend and Systems",
     description:
-      "Designing scalable design systems that empower teams and protect brand integrity across complex product ecosystems.",
+      "Experienced with Node.js, Golang, and multiple database like PostgreSQL, Redis, Milvus, and distributed architecture design for products that need to scale cleanly.",
     tone: "primary",
   },
   {
     icon: "analytics",
-    title: "Insight Driven",
+    title: "Product-Focused Delivery",
     description:
-      "Balancing taste and evidence so interface decisions stay expressive, measurable, and commercially useful.",
+      "Comfortable owning roadmap, planning, stakeholder alignment, and execution when engineering decisions need to connect directly to product outcomes.",
     tone: "tertiary",
   },
 ];
 
 const promptSuggestions = [
-  "How do you approach UX?",
-  "View availability",
+  "What did Bao build at U2U Network?",
+  "What roles is Bao targeting next?",
+];
+
+const personalityCards = [
+  {
+    title: "ENFJ-A energy",
+    description:
+      "Bao tends to show up as the person who gathers context quickly, gets people aligned, and pushes the room toward a clear next move.",
+  },
+  {
+    title: "People-first operator",
+    description:
+      "He likes turning scattered ideas into shared momentum, especially when product, engineering, and business teams need one direction.",
+  },
+  {
+    title: "Serious about outcomes",
+    description:
+      "There is a playful side in conversation, but the work mode is focused: clear ownership, clean execution, and no drama around delivery.",
+  },
+];
+
+const personalityTags = [
+  "ENFJ-A",
+  "connector",
+  "high-agency",
+  "team catalyst",
+  "builder mindset",
+];
+
+const visionPoints = [
+  "Ultimate Life goal: Enhance the value of Vietnamese and their living standards.",
+  "Vision: build products that create tangible value, especially where fintech and AI can solve real operational or commercial problems.",
+  "Belief: Simplicity is prerequisite for reliability.",
+  "Ideal environment: high-ownership teams, sharp people, direct communication, enthusiast with the product.",
 ];
 
 const exhibits = [
   {
-    title: "Lumina Banking",
-    description: "Reimagining the future of asset management through spatial UI.",
-    tags: ["Fintech", "2024"],
+    title: "LayerG and L3Wiz",
+    description:
+      "Led product vision and engineering for a DePIN gaming ecosystem and a no-code Web3 loyalty platform with real-world business use cases.",
+    tags: ["Fintech / Web3", "Product", "2023-2025"],
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB7xekSE2WGMEojo9kV4bqG06PnYOplZKG-DNJ7yJbaWTkj2LxHGsOgRgu3I8IbW_7rumGCMUA7zjmUVEOYIL1gzdSjcmc0OncaUZyW2AX09IhP2zKvi9qxC-ihyEPQZJHMCw0A_DhSqetNNkoe90HryPSj1i2IdEr_Ai6jnmxuUe7KOAnXMJDyu0iAW7cahFccgLh-tThQRRelN6gTWX91HFmGSKM_aAe-Ltsa502Wtuyfo-SJ-8KeTGmwyr_diGkUWFS4NHE0g1S1",
-    alt: "Abstract digital rendering of flowing silk-like gradients with sharp futuristic edges.",
+      "",
+    alt: "Abstract digital rendering representing tokenized ecosystems and high-scale product systems.",
     layout: "wide",
   },
   {
-    title: "Chronos Elite",
-    description: "A minimal storefront for a limited-edition horology brand.",
-    tags: ["E-Commerce", "2023"],
+    title: "Vylinh.ai",
+    description:
+      "Built a multi-model AI application that centralizes several AI workflows and shares context windows across them in one platform.",
+    tags: ["AI Platform", "2024"],
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBilUcDyj3c38NghK1lRGq15-vrI6-KLxTywjezIytDvU-09kOr3lbd5TXPfDpXzfkL1lx6-W3SgHZqbblNHq4KKeGXOeiRnCSApObHvAVZnR6E1wF4GH1z-cA7QhBH3bbwXiX_zxBG855iEmXk0JVK2p7BsinQzbBFjb2L_fZP4X1484l7Fai1I5twWQgR_lec4-K3TL9o1UJ86RXotCfVaM9QODBnZ6W8FGiN09y6N6x8qUTcFg8IZpLpQ1P3zs9UTwdsaBQqcc1b",
-    alt: "Close up of a luxury watch movement with technical precision and warm accent lighting.",
+      "",
+    alt: "Technical visual suggesting a unified AI workspace and multi-model orchestration.",
     layout: "square",
   },
   {
-    title: "Vector Cloud",
-    description: "Streamlining enterprise dev-ops with a disciplined visual hierarchy.",
-    tags: ["SaaS", "2024"],
+    title: "Etee.ai",
+    description:
+      "Developed a print-on-demand commerce platform with AI image generation and automated delivery flow to printing partners.",
+    tags: ["E-Commerce + AI", "2023"],
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCer0UjgpyRJutiKeVLlYa8o3xj8LW-v4TXbQsXbOxz5qMoHByDumjN5b8BlGQtT4JA6PbxXBTNthNtXlh1a7yEtPmd1SPInl3qr_c-E5LCOhpa-kQS_2BFX1LVMDTh5lwYoZTA6ySwgB585Wbzom9dYtvpWTNGdW9plg4kLhH7hrTe7XTbEqsM6gvkfJllIrR492qxMlYO_LNTgMo70djR7n1iQOLFwCtAFPKqsiqZB80A2ZdMgOjHvOU3gCOgPtERWTRXVkXLkPgb",
-    alt: "Digital earth at night with glowing network nodes and data lines.",
+      "",
+    alt: "Digital commerce illustration representing AI-generated products and fulfillment flow.",
     layout: "portrait",
   },
 ];
@@ -63,28 +100,69 @@ const exhibits = [
 const timeline = [
   {
     step: "01",
-    title: "Principal Designer",
-    company: "Nexus Labs - San Francisco",
-    period: "2021 - Present",
-    note: "Current Chapter",
+    title: "Head of Engineering",
+    company: "U2U Network x SSID",
+    period: "Oct 2023 - Nov 2025",
+    note: "Product and delivery ownership",
+    details: [
+      "Joined early as a lead engineer with strong product focus and translated CTO vision into concrete products.",
+      "Managed the full product lifecycle across planning, roadmap, budget, stakeholder alignment, and delivery.",
+      "Owned product vision and led the development of LayerG, a DePIN-based gaming ecosystem, and L3Wiz, a no-code Web3 loyalty platform.",
+      "Helped convert Web2 business use cases into tokenized loyalty and reward systems for retail, F&B, and e-commerce businesses.",
+      "Provided strategic consulting for AI integration across the SSI ecosystem while keeping alignment with Vietnam's Decree 13 and PDPL requirements.",
+      "Worked with financial mechanisms, token economics, and ecosystem cash flow design.",
+    ],
   },
   {
     step: "02",
-    title: "Senior UI/UX Designer",
-    company: "Aether Digital - London",
-    period: "2018 - 2021",
-    note: "The Agency Years",
+    title: "Lead Backend",
+    company: "VUCAR",
+    period: "Mar 2023 - Sep 2023",
+    note: "Architecture and AI integration",
+    details: [
+      "Led the setup and design of backend architecture to create a scalable and maintainable application foundation.",
+      "Built and architected CI/CD on GCP for a highly scalable system and helped push reliability toward a 99% uptime SLA.",
+      "Designed the integration of AI systems and third-party services into the product ecosystem to improve capability and performance.",
+      "Worked closely with frontend and UI/UX teams so delivery stayed aligned with business objectives and user experience goals.",
+      "Actively contributed to the team's software building process and cross-department delivery workflow.",
+    ],
   },
   {
     step: "03",
-    title: "Visual Designer",
-    company: "Stark Media - New York",
-    period: "2015 - 2018",
-    note: "The Foundation",
+    title: "Fullstack Developer / Team Leader",
+    company: "Congtroi NFT, Kardiachain",
+    period: "Feb 2022 - Mar 2023",
+    note: "Blockchain product delivery",
+    details: [
+      "Received requirements directly from clients and consulted on blockchain-based product solutions.",
+      "Implemented Subgraph solutions for indexing blockchain data and built backend services with Node.js and PostgreSQL.",
+      "Built frontend flows with React and Next.js and integrated EVM-compatible smart contracts into the product stack.",
+      "Led a team of 4 to deliver against roadmap commitments with limited resources.",
+      "Worked with blockchain product patterns such as Multicall, ERC standards, NFT marketplace flows, auction, launchpad, and swap solutions.",
+      "Used Docker and AWS services including EC2, RDS, S3, and Cloudflare to set up projects and supporting infrastructure.",
+    ],
+  },
+  {
+    step: "04",
+    title: "DevOps / Fullstack Developer",
+    company: "Netcompany",
+    period: "Apr 2021 - Nov 2021",
+    note: "Enterprise delivery foundation",
+    details: [
+      "Maintained multiple environments across the full production lifecycle and helped keep delivery stable.",
+      "Bridged communication gaps between different teams involved in the project.",
+      "Used Jenkins and HTTPD to support business logic delivery and runtime operations.",
+      "Built frontend features and bug fixes with HTML, JavaScript, CSS, and Vue.js when needed.",
+      "Implemented business logic mainly with Java, APIM on Azure, and predefined AEM architecture.",
+    ],
   },
 ];
 
-const footerLinks = ["LinkedIn", "GitHub", "Read.cv"];
+const footerLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/iambao/" },
+  { label: "Email", href: "mailto:dangkimbao1999@gmail.com" },
+  { label: "Download CV", href: "/Bao-Dang-Kim-CV.pdf" },
+];
 
 function Icon({ name, className }: { name: string; className?: string }) {
   const commonProps = {
@@ -111,37 +189,6 @@ function Icon({ name, className }: { name: string; className?: string }) {
           <path d="M12 18V6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
           <path d="M19 18V13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
           <path d="M3 20H21" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-        </svg>
-      );
-    case "arrow-forward":
-      return (
-        <svg {...commonProps}>
-          <path d="M5 12H19" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-          <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case "robot":
-      return (
-        <svg {...commonProps}>
-          <rect x="5" y="7" width="14" height="11" rx="3" stroke="currentColor" strokeWidth="1.7" />
-          <path d="M12 4V7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-          <circle cx="9.5" cy="12.5" r="1" fill="currentColor" />
-          <circle cx="14.5" cy="12.5" r="1" fill="currentColor" />
-          <path d="M9 15.5H15" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-        </svg>
-      );
-    case "more":
-      return (
-        <svg {...commonProps}>
-          <circle cx="12" cy="5" r="1.5" fill="currentColor" />
-          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-          <circle cx="12" cy="19" r="1.5" fill="currentColor" />
-        </svg>
-      );
-    case "send":
-      return (
-        <svg {...commonProps}>
-          <path d="M4 11.5L20 4L14 20L11 13L4 11.5Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
         </svg>
       );
     case "north-east":
@@ -209,7 +256,7 @@ export default function HomePage() {
       <nav className={styles.navbar}>
         <div className={styles.navContent}>
           <a href="#" className={styles.brand}>
-            The Digital Curator
+            Bao Dang Kim
           </a>
           <div className={styles.navLinks}>
             {navItems.map((item) => (
@@ -222,46 +269,46 @@ export default function HomePage() {
               </a>
             ))}
           </div>
-          <button type="button" className={styles.downloadButton}>
+          <a href="/Bao-Dang-Kim-CV.pdf" download className={styles.downloadButton}>
             Download CV
-          </button>
+          </a>
         </div>
       </nav>
 
       <section className={`${styles.section} ${styles.heroSection}`}>
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
-            <span className={styles.eyebrow}>Design / Strategy / Future</span>
+            <span className={styles.eyebrow}>Backend / Product / AI / Fintech</span>
             <h1>
-              CURATING <br />
-              <span>DIGITAL</span> DEPTH.
+              BUILDING <br />
+              <span>PRODUCT-GRADE</span> SYSTEMS.
             </h1>
             <p>
-              A Senior Design Strategist crafting high-fidelity experiences that bridge the gap
-              between human intuition and machine precision.
+              Backend engineer with 5+ years of hands-on R&amp;D experience, now moving toward
+              product-focused leadership across fintech, AI, and scalable technical delivery.
             </p>
             <div className={styles.heroActions}>
               <a href="#work" className={styles.primaryButton}>
                 Explore Work
               </a>
-              <a href="#story" className={styles.secondaryButton}>
-                The Story
+              <a href="#chat" className={styles.secondaryButton}>
+                Chat with My AI
               </a>
             </div>
           </div>
 
           <div className={styles.heroVisual}>
             <div className={styles.heroPortraitFrame}>
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ64jUN_1cFAVBQ8I2ZOAdV8MFDiQwwrCNJT3jJoIdJhbL1yh8mCVI1une0SvIIIkCknxzq5PAMbBabMas7nfoeUon2gkrMQ0V7foubH0RNeXYGyMu8yhhxV3I-Sy4WP5Q3KWIDT4o5SzMByctl0C5EWhv0E6frkGQ6XKP2DADEovp0zlQccaT8yFw9t3euKs0yaeJGozzQi9eFPsNCZKJ8fiBDjIblDCTmEf9mp8M9e27kkdsBrugaN1bQEyCd4buTP7Pr7vpj-2H"
-                alt="Moody editorial portrait of a professional designer."
+              <video
+                src="https://cdn.midjourney.com/video/9f37fc4d-57a4-4e05-a52d-0311575fa156/0.mp4"
+                // alt="Portrait placeholder for Bao Dang Kim."
                 className={styles.heroPortrait}
               />
               <div className={styles.heroOverlay} />
             </div>
             <div className={styles.heroStatCard}>
               <strong>5+</strong>
-              <span>Years of Excellence</span>
+              <span>Years across engineering and product delivery</span>
             </div>
           </div>
         </div>
@@ -270,8 +317,8 @@ export default function HomePage() {
       <section id="values" className={`${styles.section} ${styles.summarySection}`}>
         <div className={styles.summaryIntro}>
           <div className={styles.summaryLead}>
-            <p className={styles.sectionLabelTertiary}>Core Value</p>
-            <h2>Precision in every pixel. Strategy in every stroke.</h2>
+            <p className={styles.sectionLabelTertiary}>Core Strength</p>
+            <h2>From backend architecture to product execution.</h2>
           </div>
           <div className={styles.summaryCards}>
             {summaryCards.map((card) => (
@@ -288,7 +335,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={`${styles.section} ${styles.chatSection}`}>
+      <section id="chat" className={`${styles.section} ${styles.chatSection}`}>
         <div className={styles.chatFrame}>
           <div className={styles.chatGrid}>
             <ChatWidget promptSuggestions={promptSuggestions} />
@@ -299,67 +346,134 @@ export default function HomePage() {
       <section id="story" className={`${styles.section} ${styles.storySection}`}>
         <div className={styles.storyGrid}>
           <div className={styles.storyVisual}>
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQLHhv7vcY9Jqxy6Y-gAwjC7LpLszW3T2404VBzHGKZAbRvRf0WtAfLyXPCV79CmLxMVv5xN6bMKjCTVKfnv4ZNG5iPyKxLY8TDJStchwctv6_BwQvi7FEVxpu4hx0b9y-Yec1kkJvgssodYreLkG1EPOuEpChvWo5h00hoS8_rcZdpadAe5vGV4Xqnjf2aCctJxpWEDq2Fx7sCVecA4ypz710ay8Ia2zIgdMiPO00Q_b-Cs91q1O_EFOreEl72RTMjdDWS732KZWH"
-              alt="Abstract cinematic shot of vintage and modern screens."
+            <video
+              src="https://cdn.midjourney.com/video/255ff319-dc7f-4dde-989b-e2bd1b5f2a20/0.mp4"
+              // alt="Abstract visual for Bao Dang Kim's portfolio story."
             />
             <div className={styles.storyBorder} />
           </div>
           <div className={styles.storyCopy}>
-            <p className={styles.sectionLabelPrimary}>The Narrative</p>
-            <h2>Obsessed with the space between.</h2>
+            <p className={styles.sectionLabelPrimary}>Profile Snapshot</p>
+            <h2>Engineering with product accountability.</h2>
             <div className={styles.storyParagraphs}>
               <p>
-                I don&apos;t just build websites; I curate digital experiences. My journey began at
-                the intersection of print editorial and early-stage interaction design, where I
-                learned that white space is a luxury and typography is a voice.
+                Bao Dang Kim is a backend engineer based in HCMC with more than five
+                years of hands-on experience in R&amp;D, backend systems, and end-to-end product
+                delivery.
               </p>
               <p>
-                My philosophy is rooted in &quot;The Void&quot;: the belief that what we leave out is
-                just as important as what we put in. By stripping away noise, the core message gets
-                room to resonate.
+                His recent work moved beyond implementation alone. At U2U Network x SSID, he
+                joined early as a lead engineer with strong product focus, turning CTO direction
+                into roadmap, budget, stakeholder alignment, and shipped products.
               </p>
               <p>
-                Today, I help Fortune 500 companies and visionary startups navigate AI-driven
-                design without losing the human soul in the process.
+                Bao is especially interested in fintech and AI products where backend architecture,
+                delivery discipline, and business thinking need to work together. He also holds a
+                dual-degree Computer Science background from Vietnamese-German University and
+                Frankfurt University of Applied Sciences.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="work" className={`${styles.section} ${styles.exhibitsSection}`}>
+      <section id="personality" className={`${styles.section} ${styles.personalitySection}`}>
+        <div className={styles.personalityHeader}>
+          <div>
+            <p className={styles.personalityLabel}>Personality</p>
+            <h2>
+              ENFJ-A, with a <span>builder brain</span>.
+            </h2>
+          </div>
+          <div className={styles.personalityTags}>
+            {personalityTags.map((tag) => (
+              <span key={tag} className={styles.personalityTag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.personalityCards}>
+          {personalityCards.map((card) => (
+            <article key={card.title} className={styles.personalityCard}>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="vision" className={`${styles.section} ${styles.visionSection}`}>
+        <div className={styles.visionGrid}>
+          <div className={styles.visionIntro}>
+            <p className={styles.sectionLabelPrimary}>Vision</p>
+            <h2>Build products that matter, with teams that move.</h2>
+            <p className={styles.visionLead}>
+              Bao is not aiming only for a bigger title. The long game is to become the kind of
+              leader who can shape direction, align people, and still understand the system deeply
+              enough to make good calls.
+            </p>
+          </div>
+          <div className={styles.visionPoints}>
+            {visionPoints.map((point) => (
+              <article key={point} className={styles.visionPoint}>
+                <p>{point}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* <section id="work" className={`${styles.section} ${styles.exhibitsSection}`}>
         <div className={styles.exhibitsHeader}>
           <div>
-            <p className={styles.sectionLabelTertiary}>Selected Exhibits</p>
-            <h2>Case Studies</h2>
+            <p className={styles.sectionLabelTertiary}>Highlighted Work</p>
+            <h2>Selected Projects</h2>
           </div>
-          <p className={styles.scrollHint}>Scroll for more [01 - 06]</p>
+          <p className={styles.scrollHint}>Recent work</p>
         </div>
         <div className={styles.exhibitsGrid}>
           {exhibits.map((exhibit) => (
             <ExhibitCard key={exhibit.title} {...exhibit} />
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section id="timeline" className={`${styles.section} ${styles.timelineSection}`}>
-        <p className={styles.sectionLabelPrimary}>The Journey</p>
+      <section id="timeline" className={`${styles.section} ${styles.exhibitsSection}`}>
+        <p className={styles.sectionLabelPrimary}>Career Timeline</p>
         <div className={styles.timelineList}>
           {timeline.map((item) => (
-            <article key={item.step} className={styles.timelineItem}>
-              <div className={styles.timelineLeft}>
-                <span className={styles.timelineStep}>{item.step}</span>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.company}</p>
+            <details
+              key={item.step}
+              className={styles.timelineAccordion}
+              open={item.step === "01"}
+            >
+              <summary className={styles.timelineItem}>
+                <div className={styles.timelineLeft}>
+                  <span className={styles.timelineStep}>{item.step}</span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.company}</p>
+                  </div>
                 </div>
+                <div className={styles.timelineMeta}>
+                  <div className={styles.timelineRight}>
+                    <strong>{item.period}</strong>
+                    <span>{item.note}</span>
+                  </div>
+                  <span className={styles.timelineChevron} aria-hidden="true" />
+                </div>
+              </summary>
+
+              <div className={styles.timelineDetails}>
+                <ul className={styles.timelineDetailsList}>
+                  {item.details.map((detail) => (
+                    <li key={detail}>{detail}</li>
+                  ))}
+                </ul>
               </div>
-              <div className={styles.timelineRight}>
-                <strong>{item.period}</strong>
-                <span>{item.note}</span>
-              </div>
-            </article>
+            </details>
           ))}
         </div>
       </section>
@@ -367,16 +481,16 @@ export default function HomePage() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <a href="#" className={styles.footerBrand}>
-            The Digital Curator
+            Bao Dang Kim
           </a>
           <div className={styles.footerLinks}>
-            {footerLinks.map((label) => (
-              <a key={label} href="#">
-                {label}
+            {footerLinks.map((link) => (
+              <a key={link.label} href={link.href}>
+                {link.label}
               </a>
             ))}
           </div>
-          <p className={styles.footerNote}>(c) 2024 Digital Curator. Built with precision.</p>
+          <p className={styles.footerNote}>Backend, product, and AI systems built with clarity.</p>
         </div>
       </footer>
     </main>

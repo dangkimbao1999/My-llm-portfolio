@@ -20,7 +20,7 @@ export const initialChatState: ChatActionState = {
     {
       role: "assistant",
       content:
-        "Hello. I am the Digital Twin of the Curator. Ask me about experience, projects, skills, or working style, and I will answer from the verified knowledge base.",
+        "Hello. I am Bao's AI representative. Ask me about his experience, projects, skills, or working style, and I will answer only from the verified knowledge base.",
     },
   ],
   error: null,
