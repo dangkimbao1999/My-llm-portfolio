@@ -14,8 +14,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "The Digital Curator | Portfolio",
-  description: "Editorial portfolio frontend with an AI representative experience.",
+  title: "Bao Dang Kim | Portfolio",
+  description: "Portfolio with an AI representative for Bao Dang Kim.",
 };
 
 type RootLayoutProps = {
