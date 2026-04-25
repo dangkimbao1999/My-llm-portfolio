@@ -164,6 +164,13 @@ const footerLinks = [
   { label: "Download CV", href: "/Bao-Dang-Kim-CV.pdf" },
 ];
 
+const socialLinks = [
+  { label: "Facebook", href: "https://www.facebook.com/bao.dangkim1999/", icon: "facebook" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/iambao/", icon: "linkedin" },
+];
+
+const phonePlaceholder = "+84 9333 59290";
+
 function Icon({ name, className }: { name: string; className?: string }) {
   const commonProps = {
     className,
@@ -196,6 +203,24 @@ function Icon({ name, className }: { name: string; className?: string }) {
         <svg {...commonProps}>
           <path d="M8 16L16 8" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
           <path d="M9 8H16V15" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "facebook":
+      return (
+        <svg {...commonProps} viewBox="0 0 24 24">
+          <path
+            d="M13.5 21V12.8H16.3L16.7 9.6H13.5V7.56C13.5 6.63 13.76 6 15.1 6H16.8V3.14C16.51 3.1 15.52 3 14.37 3C11.96 3 10.3 4.47 10.3 7.18V9.6H7.5V12.8H10.3V21H13.5Z"
+            fill="currentColor"
+          />
+        </svg>
+      );
+    case "linkedin":
+      return (
+        <svg {...commonProps} viewBox="0 0 24 24">
+          <path
+            d="M6.73 8.43A1.86 1.86 0 1 1 6.7 4.71a1.86 1.86 0 0 1 .03 3.72ZM8.2 20.5H5.17V10.07H8.2V20.5ZM20.5 20.5h-3.02v-5.07c0-1.21-.02-2.76-1.68-2.76-1.69 0-1.95 1.31-1.95 2.67v5.16h-3.01V10.07h2.89v1.42h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v5.97Z"
+            fill="currentColor"
+          />
         </svg>
       );
     default:
@@ -269,9 +294,32 @@ export default function HomePage() {
               </a>
             ))}
           </div>
-          <a href="/Bao-Dang-Kim-CV.pdf" download className={styles.downloadButton}>
-            Download CV
-          </a>
+          <div className={styles.navActions}>
+            <div className={styles.socialLinks}>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={styles.socialLink}
+                  aria-label={link.label}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                >
+                  <Icon name={link.icon} className={styles.socialIcon} />
+                </a>
+              ))}
+            </div>
+            <a
+              href={`tel:${phonePlaceholder.replace(/\s+/g, "")}`}
+              className={styles.phoneChip}
+              aria-label="Phone number"
+            >
+              {phonePlaceholder}
+            </a>
+            <a href="/Bao-Dang-Kim-CV.pdf" download className={styles.downloadButton}>
+              Download CV
+            </a>
+          </div>
         </div>
       </nav>
 
