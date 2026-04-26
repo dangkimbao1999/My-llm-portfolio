@@ -10,7 +10,7 @@ There's no digitalize platform/process in Vietnam for booking artist, performer.
 
 ## Solution
 
-Bao create a booking platform which connect and match talent finder and talent themselve. Also it took care of other legal process like tax, contract through digital and realiable process.
+Bao create a booking platform which connect and match talent finder and talent themselves and took care of other legal process like tax, contract through a digital and reliable process.
 
 ## Contributions
 
@@ -19,8 +19,8 @@ Bao create a booking platform which connect and match talent finder and talent t
 
 ## Technical stack
 
-- Node.js
-
+- Node.js (React)
+- Java
 
 ## Impact
 
